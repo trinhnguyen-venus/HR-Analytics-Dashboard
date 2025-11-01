@@ -60,7 +60,7 @@ It highlights the end-to-end analytical process — from data cleaning, modeling
   PercentOverTime = AVERAGE(HRData[OverTime])
   AvgMonthlyIncome = AVERAGE(HRData[MonthlyIncome])
   AvgJobSatisfaction = AVERAGE(HRData[JobSatisfaction])
-```
+  ```
 
 ###Step 5 — Pivot Tables & Visuals
 
