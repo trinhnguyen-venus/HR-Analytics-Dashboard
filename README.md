@@ -25,7 +25,7 @@ It highlights the end-to-end analytical process — from data cleaning, modeling
 - Actions: import into Power Query, detect and fix column types, remove unneeded columns, handle missing values, normalize formats.
 - Result: a cleaned data query ready to load into an Excel Table.
 
-![Step 1 - Import Data](Images/Step 1 – Import data via Power Query.png)
+![Step 1 - Import Data](Images/Step1_ImportData.png)
 
 
 ### Step 2 — Data Cleaning & Transformation
@@ -35,7 +35,7 @@ It highlights the end-to-end analytical process — from data cleaning, modeling
   - Remove duplicates and validate key columns.
 - Result: clean dataset and a Data Validation table verifying integrity.
 
-![Step 2 - Cleaning Data](images/Step 2 - Cleaning Data.png)
+![Step 2 - Cleaning Data](Images/Step2_CleaningData.png)
 ![Data Validation Table](Images/Data_Validation_Table.png)
 
 
@@ -44,12 +44,13 @@ It highlights the end-to-end analytical process — from data cleaning, modeling
 - Create `KPI_Table` documenting KPI definitions, calculation formulas, and targets.
 - This table acts as the single source of truth for downstream analysis.
 
-![Step 3 - Load HRData](Images/Step 3 – Load cleaned data into Excel Table (HRData).png)
-![KPI Table](Images/KPI Table.png)
+![Step 3 - Load HRData](Images/Step3_LoadHRData.png)
+![KPI Table](Images/KPI_Table.png)
 
 
 ### Step 4 — Data Model & Measures (Power Pivot / DAX)
-- Add `HRData` into the Data Model (Power Pivot).  
+- Add `HRData` into the Data Model (Power Pivot).
+![Load to Data Model](Images/LoadToDataModel.png)
 - Implemented DAX measures for KPIs:
 
   ```DAX
@@ -84,7 +85,7 @@ Avg Monthly Income by Job Role
 
 Turnover Rate by Department
 
-Gender Diversity Overview
+Gender Diversity 
 
 ![Dashboard](Images/Dashboard.png)
 
