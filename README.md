@@ -1,105 +1,113 @@
 # 📊 HR Performance Dashboard
----
-## Skills Demonstrated
-Power Query: 	Data extraction, transformation, and automation
-Power Pivot (DAX):	Measure creation, KPI computation, and relationships
-Pivot Table / Pivot Chart:	Multi-dimensional HR analysis
-Dashboard Design:	Layout, formatting, and storytelling with visuals
+
+## 1. Project Context
+This project simulates an HR analytics assignment for an internal HR Manager at a mid-sized company (sample company).
+
+The objective is to understand employee attrition drivers, performance patterns, and promotion dynamics, and translate those findings into actionable HR recommendations.
+
+The focus is on business-relevant questions, analytical reasoning, and decision support.
+
+## 2. Business Questions
+The dashboard is designed to answer the following questions an HR Manager would typically ask:
+
+1. Which departments and job roles have the highest attrition risk?
+2. What are the key drivers of employee turnover?
+3. How do workload, compensation, and job satisfaction relate to attrition?
+4. Are there inequalities or patterns in income and performance across demographics?
+5. How does career progression (promotion) differ by age group?
+
+## 3. Key Metrics Tracked
+
+- Headcount
+- Turnover Rate
+- Promotion Rate
+- Average Work Years
+- Average Age
+- Average Job Satisfaction
+
+## 4. Analytical Approach
+The analysis follows a driver-based framework, not descriptive reporting:
+
+- Segment attrition by department, job role, overtime, income level, and satisfaction
+- Compare income and performance across gender
+- Analyze career progression patterns using promotion rates by age group
+- Validate findings across multiple dimensions to avoid single-metric bias
+
+## 5. Key Insights
+### 5.1 Attrition is driven by workload and satisfaction
+
+- Employees not working overtime account for a larger share of total turnover compared to those working overtime.
+- This suggests that overtime alone is not the main driver of attrition.
+- Other factors such as role type, engagement, or career expectations may play a more significant role.
+
+![Insert image](Images/Turnover_Rate_vs_Overtime.png)
+
+### 5.2 Higher job satisfaction groups represent a larger portion of turnover
+
+- Employees with job satisfaction levels 3 and 4 make up a higher share of attrition compared to levels 1 and 2.
+- This indicates that turnover does not only come from dissatisfied employees.
+- Possible explanations include:
+- Employees with acceptable satisfaction still leave for better opportunities
+- External market factors rather than internal dissatisfaction
+
+![Insert image](Images/Turnover_Rate_vs_Job_Satisfaction.png)
+
+### 5.3 Sales roles are attrition hotspots
+
+- Sales roles appear frequently among the top job roles by turnover rate.
+- This pattern suggests structural challenges such as:
+  - Performance pressure
+  - Variable income
+  - Workload intensity
+
+![Insert image](Images/Top_Job_Roles_by_Turnover_Rate.png)
+![Insert image](Images/Turnover_Rate_by_Department.png)
+
+### 5.4 Compensation differs by role, while performance remains comparable
+
+- Managerial and research leadership roles have significantly higher average income.
+- Income differences exist between genders, while average performance ratings are similar.
+- This highlights the need to review compensation fairness separately from performance outcomes.
+
+![Insert image](Images/Avg_Monthly_Income_by_Job_Role.png)
+![Insert image](Images/Gender_Income_&_Performance_Comparison.png)
+
+### 5.4 Promotion rate shows a clear downward trend with age
+
+- Promotion rate decreases gradually across age groups:
+  - Under 30: highest promotion rate
+  - 30–40 and 40–50: moderate decline
+  - 50+: lowest promotion rate
+- This indicates that career progression opportunities become more limited as employees grow older, which may affect long-term engagement.
+
+![Insert image](Images/Promotion_Rate_by_Age_Group.png)
 
 
-## Project Overview
-This project demonstrates advanced Excel analytics skills through the creation of a fully interactive **HR Analytics Dashboard**.  
-It highlights the end-to-end analytical process — from data cleaning, modeling, and KPI calculation to dashboard design — using Excel’s modern tools:
-- **Power Query** for ETL (Extract – Transform – Load)
-- **Power Pivot** for Data Modeling and DAX calculations
-- **Pivot Table & Pivot Chart** for analysis
-- **Dashboard Design** for professional visualization and insights delivery
+## 6. Business Recommendations
+
+Based on the analysis:
+
+1. Investigate non-overtime employee turnover to understand underlying drivers beyond workload.
+2. Conduct stay interviews even with moderately satisfied employees to capture external push factors.
+3. Review Sales role structure, including targets, incentives, and workload balance.
+4. Regularly assess pay equity, separating compensation review from performance evaluation.
+5. Develop alternative career paths for senior employees beyond traditional promotions.
+
+## 7. Intended Stakeholders
+
+- HR Managers
+- HR Business Partners
+- People & Workforce Analytics Teams
+
+### Project Deliverable
+
+- Interactive Excel dashboard designed for management-level decision making
+- Focus on insight generation and recommendations.
 
 
-## ⚙️ Project Workflow
-
-### Step 1 — Import Data (Power Query)
-- Source: `HR_raw_data.xlsx`  
-- Actions: import into Power Query, detect and fix column types, remove unneeded columns, handle missing values, normalize formats.
-- Result: a cleaned data query ready to load into an Excel Table.
-
-![Step 1 - Import Data](Images/Step1_ImportData.png)
-
-
-### Step 2 — Data Cleaning & Transformation
-- Actions:
-  - Standardize date/number/text formats.
-  - Create derived columns (e.g. `AgeBand`, `WorkYears`).
-  - Remove duplicates and validate key columns.
-- Result: clean dataset and a Data Validation table verifying integrity.
-
-![Step 2 - Cleaning Data](Images/Step2_CleaningData.png)
-![Data Validation Table](Images/Data_Validation_Table.png)
-
-
-### Step 3 — Load to Excel Table (`HRData`)
-- Load cleaned query into an Excel Table named **HRData**.  
-- Create `KPI_Table` documenting KPI definitions, calculation formulas, and targets.
-- This table acts as the single source of truth for downstream analysis.
-
-![Step 3 - Load HRData](Images/Step3_LoadHRData.png)
-![KPI Table](Images/KPI_Table.png)
-
-
-### Step 4 — Data Model & Measures (Power Pivot / DAX)
-- Add `HRData` into the Data Model (Power Pivot).
-![Load to Data Model](Images/LoadToDataModel.png)
-- Implemented DAX measures for KPIs:
-
-  ```DAX
-  Headcount = DISTINCTCOUNT([EmployeeNumber])
-  TurnoverCount = CALCULATE( COUNTROWS(HRData), HRData[Attrition] = "Yes")
-  TurnoverRate = DIVIDE( [TurnoverCount], [Headcount], 0 )
-  PercentOverTime = AVERAGE(HRData[OverTime])
-  AvgMonthlyIncome = AVERAGE(HRData[MonthlyIncome])
-  AvgJobSatisfaction = AVERAGE(HRData[JobSatisfaction])
-```
-
-###Step 5 — Pivot Tables & Visuals
-
-Built PivotTables by key HR dimensions:
-
-Department: Headcount, Turnover Rate, Promotion Rate, Avg Income
-
-Gender: Turnover Rate by Gender
-
-Job Role: Avg Monthly Income by Job Role
-
-
-### Step 6 — Dashboard Design
-
-Combined visuals into an interactive HR Dashboard.
-
-Applied consistent color palette, gradient columns, and slicers for filters.
-
-Key visuals include:
-
-Avg Monthly Income by Job Role
-
-Turnover Rate by Department
-
-Gender Diversity 
-
-![Dashboard](Images/Dashboard.png)
-
-
-## 💡 Key Insights (summary)
-
-Turnover hotspots: Sales roles show the highest turnover; investigate workload and compensation alignment.
-
-Compensation: Managers and research directors have the highest average incomes; review pay bands for lower-paid roles.
-
-Workload & Satisfaction: Higher overtime correlates with lower job satisfaction — consider workload redistribution or wellbeing programs.
-
-Experience impact: Employees with longer tenure generally have higher performance ratings.
-
----
 ## Author
 **Trinh Nguyen**  
+
 📧 Contact: ng.trinh3023@gmail.com
+
 📍 GitHub: [https://trinhnguyen-venus.github.io/](https://trinhnguyen-venus.github.io/)
